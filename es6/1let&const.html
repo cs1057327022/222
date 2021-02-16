@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(a);
+        // console.log(b)  // 坑1 不存在变量提升
+        var a = '124';
+        let b = '你没定义';
+        var a = 'wowo';
+        // let b = 'error' // 坑2 在同一个作用域中 不能命名相同的变量
+
+        {
+            var c = 'ccc';
+            let d = '我只一个块里面的';  // d 的执行环境为 块级作用域
+            console.log(d)
+        }
+        console.log(c)
+        // console.log(d)  // 未定义
+
+        if(true){
+            let str = '你好啊';
+            console.log(str)
+        }
+        // console.log(str)
+
+
+    {
+        let b = 'dddd'
+        console.log(b)
+        {
+            // let b = 'aaa'
+            console.log(b)
+        }
+
+    }
+    </script>
+</body>
+</html>

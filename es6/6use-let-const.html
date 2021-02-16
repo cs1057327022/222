@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>点击变色</h1>
+    <h1>点击变色</h1>
+    <h1>点击变色</h1>
+    <h1>点击变色</h1>
+    <h1>点击变色</h1>
+    <script>
+      var hs = document.querySelectorAll("h1");
+
+      // 问题 变量污染
+      //   for (var i = 0; i < hs.length; i++) {
+      //     hs[i].onclick = function () {
+      //       hs[i].style.color = "red";
+      //     };
+      //   }
+
+      // for(var i =0 ;i<hs.length;i++){
+      //     (function(i){
+      //         hs[i].onclick= function(){
+      //             hs[i].style.color = 'red'
+      //         }
+      //     })(i)
+      // }
+
+      for (let i = 0; i < hs.length; i++) {
+        hs[i].onclick = function () {
+          hs[i].style.color = "red";
+        };
+      }
+
+      // let 随时随地都可创建私有变量
+
+      // 你是如何解决变量污染的： 闭包  let 
+
+      // 说一下 let const 理解？ 
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var p1 = new Promise((resolve) => {
+        setTimeout(function () {
+          console.log("p1");
+          resolve("你好");
+        }, 200);
+      });
+
+      var p2 = new Promise((resolve) => {
+        setTimeout(function () {
+          console.log("p2");
+          resolve("我好");
+        }, 1000);
+      });
+
+      var p3 = new Promise((resolve) => {
+        setTimeout(function () {
+          console.log("p3");
+          resolve("大家好");
+        }, 300);
+      });
+
+      // p1 p2 p3 只要有一个成功 就会执行 race().then
+      var tast = [p1, p2, p3];
+      Promise.race(tast).then((res) => {
+        console.log(res); // 只显示一个结果
+        console.log("已经有一个成功了");
+  
+      });
+      // 多异步同时进行；只要有一个完成；就表示所有都成功；promise.race
+    </script>
+  </body>
+</html>

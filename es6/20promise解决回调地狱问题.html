@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function ajax(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", url);
+        xhr.send();
+        xhr.onreadystatechange = (res) => {
+          if (res.readyState == 4) {
+              callback()
+          } else {
+              callback()
+          }
+        };
+      }
+      // 网络请求异步回调和桉树解构
+      // 回调函数层层嵌套形参回调地狱
+      // 问题是 代码可读性太差了
+      ajax("/a", function (data) {
+        ajax("/b", function (data) {
+          ajax("/c", function (data) {
+            console.log("cccc");
+          });
+        });
+      });
+
+      // 实例化 promise 对象  一个promise 对象一个任务
+      // 1: 代办状态
+      // 2：成功状态
+      // 3：失败状态
+      ajax("/a")
+        .then((res) => {
+          ajax("/b");
+        })
+        .then((res) => {
+          ajax("/c");
+        });
+    </script>
+  </body>
+</html>

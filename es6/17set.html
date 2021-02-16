@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // set 构造函数
+      // 用： 数组去重
+      var s = new Set();
+      console.log(s);
+      var arr = [1, 2, 2, 3, 3, 3];
+      arr.forEach((item) => {
+        // add()  往 set 中添加 set 中没有的元素
+        return s.add(item);
+      });
+
+      console.log(s);
+      // clear() 清空set
+      //   s.clear()
+      //   console.log(s);
+      console.log(s.size); // 返回set 长度
+
+
+      // 如何办一个数组变为 set数组
+      var res = [1,1,1,2,2,3,34,4,5,6,4];
+      var set = new Set(res);
+      console.log(set)
+
+      // 如何把set数组变为普通数组
+      var array = [...set]
+      console.log(array)
+    </script>
+  </body>
+</html>

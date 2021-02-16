@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var obj = {
+        //     num:9,
+        //     // 通过get set 做 静态属性 num 的数据劫持
+        //     get _num(){
+        //         return this.num
+        //     },
+        //     set _num(val){
+        //         this.num = val
+        //     }
+        // }
+
+        // var res=obj._num;
+        // obj._num = 'dddd';
+
+        var obj = {
+            num:9
+        }
+        // _num 作为 num 中间存储值。避免 get set 死循环
+        let _num = obj.num;
+        //  Object.defineProperty() 监听对象下某一个属性，所数据劫持处理
+        //  参一 对象
+        //  参二：被监听的属性
+        //  参三：options{ getter setter}
+        Object.defineProperty(obj,'num',{
+        // 数据劫持：获取数据；还没有有取到 做拦截处理；
+            get(){
+                // 拦截 
+                console.log('触发get'); 
+                return _num  // 释放，最终获取数据；
+                // 没有return 拦截数据；但是不释放 获取不到值
+            },
+           // 数据劫持：修改数据  在修改之前拦截  
+            set(val){
+                // 拦截
+                console.log('触发set')
+                console.log(val)
+                // 修改
+                _num = val;
+                // 没有修改：拦截 num 属性没有重新赋值
+            }
+        })
+       
+      
+        var res = obj.num; 
+        console.log(res,'-----------');
+        obj.num = 123
+
+
+        //  Object.defineProperty 与 es6 的get set区别是什么？
+        // 写法不同
+    </script>
+</body>
+</html>

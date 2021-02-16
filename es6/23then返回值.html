@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // promise 的回调函数；在 new promise 的就执行了
+      var p = new Promise((res, rej) => {
+        console.log("异步开始了");
+        res("success");
+      });
+      // .then() 默认返回新的promise prromiseValue :undefined
+
+      //     var res = p.then(res=>{
+      //         console.log(res,'--------')
+      //         return 1  // res promise promiseVlau :1
+      //     })
+      //     console.log(res)
+      //     var res1 = res.then(res=>{
+      //         console.log(res)  // 1
+      //     })
+      //
+
+      // 2
+      // res 是第二个任务  p 第一个任务
+      var res = p.then(res=>{
+          console.log(res)
+          return p  // 新任务
+      })
+      console.log(res)
+
+      //  new promise 执行一次 一个=【新的任务；】
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // proxy 代理  做对象属性的数据劫持
+
+        var fangdong = {
+            fangzi: "房子",
+            biesu: "别墅",
+            list: [1, 2, 4],
+        };
+        // 1: 创建了代理对象 proxy
+        var proxy = new Proxy(fangdong, {
+            // fangdong被代理对象
+            get: function (target, propKey, receiver) {
+                // 劫持
+                console.log("触发get");
+                console.log(target); // 被代理对象 fangdong
+                console.log(propKey); // 代理的属性
+                console.log(receiver); // 代理对象 proxy
+                return target[propKey]; // 释放
+            },
+            set: function (target, proxyKey, value, receiver) {
+                // 修改前劫持
+                console.log("触发set，数据更新了");
+                console.log(value);
+                console.log(receiver);
+                target[proxyKey] = value; // 修改完毕 释放
+            },
+        });
+        // console.log(proxy)
+        // var kehu = Object.create(proxy);
+        // console.log(kehu, '-------')
+        // var res = kehu.fangzi
+        // console.log(res)
+        // proxy.fangzi;
+        // proxy.biesu = "漂亮的别墅";
+
+    //   faongdong 让 proxy 对自己的 私有属性；做代理劫持，
+    //   当 proxy  访问 或 修改 房东属性时候；会触发get set 方法;
+    //   get return 返回 fangdong.属性 的值
+    //   set 中修改 fangdong对象属性的值
+    //   kehu 访问或这修改 也可以触发  代理中get set
+
+    //   proxy.list[0] = 'aaa'  // bug
+
+      proxy.list = new Proxy(proxy.list, {
+        get(target, index, reveicer) {
+          console.log(target);  // 被代理的数组
+          console.log(index);   // 索引值
+          console.log(reveicer); // 代理对象
+          return target[index]
+        },
+        set(target, index, value, reveicer) {
+            console.log(value)
+            target[index] = value
+        },
+      });
+      proxy.list[0];
+      proxy.list[1]= '你好'
+    </script>
+</body>
+
+</html>

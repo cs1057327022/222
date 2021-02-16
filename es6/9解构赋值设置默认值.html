@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    let arr = [1, 2, 3, { age: 12, name: "qw" }];
+    let [q,w,e,{age,name}] = arr
+    console.log(q,w,e,age,name);
+
+
+    let obj = {a:{c:11},b:[1,2]}
+    let {a,a:{c},b,b:[t,y]} = obj
+    console.log(a,c,b,t,y);
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    //   //暂时性死区
+    //   tep = "bbb"; //  Cannot access 'tep' before initialization
+    //   // 简单理解：在let 声明 tep 变量之前不能使用tep 该区域为暂时性死区
+    //   let tep = "aaaa";
+    //   console.log(tep);
+
+      var tmp = 123;
+
+      if (true) {
+        tmp = "abc"; // ReferenceError
+        let tmp;
+      }
+
+    //   var a ;
+    //   function foo(){
+    //       // var a;
+    //       a = '1222';
+    //       var a = 122
+    //   }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let foo = (a, b) => {
+        // 没有this  使用上一层作用域中this
+        console.log(this);
+      };
+      var obj = {
+        foo,
+        bar: function () {
+          console.log(this);
+          setTimeout(function () {
+            console.log(this, "function");
+          }, 16.7);
+          setTimeout(() => {
+            console.log(this, "箭头函数");
+          }, 16.7);
+        },
+      };
+      console.log(obj.foo());
+      obj.bar();
+      //   // 这里的this 永远指向window
+      //   setTimeout(function () {
+      //     console.log(this);
+      //   }, 16.7);
+
+      //   // 这里的this 不一定指向window
+
+      //   setTimeout(() => {
+      //     console.log(this);
+      //   });
+
+      // 大部分异步的function 函数中默认this指向window
+      //-----> 解决方式 bind apply call
+      // ----> 方式二  箭头函数
+
+      //   var bar = (a)=>{
+      //       return a+1
+      //   }
+
+      // 简写
+      var bar = (a) => 1 + a;
+
+      console.log(bar(1), "---------");
+
+      // 没有arguements
+
+      var bar1 = (...a) => {
+        // console.log(arguments)
+        console.log(a)
+        return a + 1;
+      };
+      bar1(1)
+    </script>
+  </body>
+</html>

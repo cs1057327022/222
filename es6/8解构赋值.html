@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+          let obj = {
+            name:"yf",
+            age:22
+        }
+        let { name,age }  = obj
+        console.log(name,age)
+
+        // 解构数组
+        let [one,,[a,b,[c]]] = [1,'2',[1,2,[5]]]
+        console.log(one,a,b,c)
+
+        let [head, ...tail] = [1, 2, 3, 4];
+        console.log(tail,head)
+
+        
+        // function bar({a,b}){
+        //     // let {a,b} = obj
+        //     console.log(a,b)
+        // }
+        // bar({
+        //     a:'11',
+        //     b:'22'
+        // })
+
+        let {d:dr,e:er} = {d:23,e:14}
+        console.log(dr)  // 23
+        console.log(er) // 14
+        // console.log(d,e)  报错
+
+        
+    </script>
+</body>
+</html>
+<!-- 
+    练习
+    let arr = [1,2,3,{age:12,name:'qw'}]
+    let obj = {a:{c:11},b:[1,2]}
+ -->.

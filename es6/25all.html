@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var p1 = new Promise((resolve)=>{
+            console.log('p1')
+            setTimeout(function(){
+                resolve('你好')
+            },200)
+        })
+
+        var p2 = new Promise((resolve)=>{
+            console.log('p2')
+            setTimeout(function(){
+                resolve('我好')
+            },1000)
+        })
+
+        var p3 = new Promise((resolve)=>{
+            console.log('p3')
+            setTimeout(function(){
+                resolve('大家好')
+            },300)
+        })
+  
+        // 需求；等待 p1 p2 p3 全局都成功后在 aler(123);
+        var tast = [p1,p2,p3];
+        Promise.all(tast).then(res=>{
+            console.log(res)  // 多个任务 结果
+            console.log('多个异步有任务都成功了')
+            // alert('123')
+        })
+        // 上传图片；
+        // 一次上传9张图片；服务器要求；每次最多传一张；；
+        // 9张图片都上传成功后，提示 图片上传成功
+
+        // 业务
+        // 发送多个非关联请求，需要等待所有请求都成功后；在执行下一个任务。promise.all()
+        // 一个请求一个promise对象
+    </script>
+</body>
+</html>

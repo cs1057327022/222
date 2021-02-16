@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        name: "sage",
+        age: 12,
+        get _name() {
+          console.log("执行了get");
+          return this.name;
+        },
+        set _name(val) {
+          console.log("执行set", val);
+          this.name = val;
+        },
+        get _age() {
+          console.log("通过getter 获取age");
+          // 这里搜数据劫持处理
+          return this.get
+        },
+        set _age(val) {
+          console.log("修改了age 属性的值", val);
+          // 这里可以做数据劫持处理
+
+          this.age = val;
+        },
+      };
+      console.log(obj.name); // 没监听；没有触发 get set
+      console.log(obj._name); // get
+      obj._name = "王宇航"; // set
+      // getter  setter 通过 获取属性 触发getter 修改触发setter 做数据劫持处理
+      // 每一个属性都可以有一个 getter setter
+
+      let res = obj._age;
+      console.log(res);
+      obj._age = "hwoloe";
+    </script>
+  </body>
+</html>
